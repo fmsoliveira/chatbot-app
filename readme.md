@@ -1,110 +1,126 @@
-# Chatbot Conselheiro - WebApp com Docker, FastAPI e Streamlit
+Chatbot Conselheiro - WebApp com Docker, FastAPI e Streamlit
 
-Este projeto implementa um chatbot conselheiro que permite o upload de PDFs com leis e regulamentos. O chatbot responde a perguntas do utilizador através de um modelo de linguagem (LLM) baseado no **Ollama** e guarda informações em **ChromaDB** para buscas semânticas.
+Este projeto implementa um chatbot conselheiro que permite o upload de PDFs com leis e regulamentos. O chatbot responde a perguntas do utilizador através de um modelo de linguagem (LLM) baseado no Ollama e guarda informações em ChromaDB para buscas semânticas.
 
-## 📌 Tecnologias Utilizadas
+📌 Tecnologias Utilizadas
 
-- **Python 3.11**
-- **FastAPI** (Backend)
-- **Streamlit** (Interface Web)
-- **ChromaDB** (Banco de dados vetorial)
-- **Ollama** (Modelo de linguagem)
-- **Docker & Docker Compose**
+Python 3.11
 
----
+FastAPI (Backend)
 
-## 🚀 Como utilizar o Projeto
+Streamlit (Interface Web)
 
-### 1️⃣ Instalar o Docker e Docker Compose
+ChromaDB (Banco de dados vetorial)
 
-🔗 [Guia de Instalação do Docker](https://docs.docker.com/get-docker/)
+Ollama (Modelo de linguagem)
 
-### 2️⃣ Clonar o Repositório
+Docker & Docker Compose
 
-```bash
-git clone https://github.com/seu-repositorio/chatbot-legalista.git
-cd chatbot-legalista
-```
+🚀 Como utilizar o Projeto
 
-### 3️⃣ Construir e Iniciar os Containers
+1️⃣ Instalar o Docker e Docker Compose
 
-```bash
-docker compose up --build
-```
+🔗 Guia de Instalação do Docker
+
+2️⃣ Clonar o Repositório
+
+<pre>
+<code id="code1">git clone https://github.com/seu-repositorio/chatbot-legalista.git
+cd chatbot-legalista</code>
+<button onclick="copyToClipboard('code1')">📋 Copiar Código</button>
+</pre>
+
+3️⃣ Construir e Iniciar os Containers
+
+<pre>
+<code id="code2">docker compose up --build</code>
+<button onclick="copyToClipboard('code2')">📋 Copiar Código</button>
+</pre>
 
 A aplicação estará disponível em:
 
-- **Interface Web (Streamlit):** [http://localhost:8501](http://localhost:8501)
-- **API Backend (FastAPI):** [http://localhost:8000](http://localhost:8000)
+Interface Web (Streamlit): http://localhost:8501
 
----
+API Backend (FastAPI): http://localhost:8000
 
-## 📂 Estrutura do Projeto
+📂 Estrutura do Projeto
 
-```
 chatbot-app/
 │── backend/
-│   │── main.py          # API FastAPI
-│   │── process.py       # Processamento de PDFs
-│   │── vector_store.py  # Armazenamento semântico (ChromaDB)
-│   │── chat.py          # Comunicação com Ollama
-│── app.py               # Interface Streamlit
-│── Dockerfile.backend   # Configuração do backend
+│ │── main.py # API FastAPI
+│ │── process.py # Processamento de PDFs
+│ │── vector_store.py # Armazenamento semântico (ChromaDB)
+│ │── chat.py # Comunicação com Ollama
+│── app.py # Interface Streamlit
+│── Dockerfile.backend # Configuração do backend
 |── Dockerfile.streamlit # Configuração do frontend
-│── docker-compose.yml   # Orquestração dos containers
-│── requirements.txt     # Dependências do projeto
-|── entrypoint.sh        # script para correr no ollama
+│── docker-compose.yml # Orquestração dos containers
+│── requirements.txt # Dependências do projeto
+|── entrypoint.sh # script para correr no ollama
 |── readme.md
-```
 
----
+🛠️ Como Funciona
 
-## 🛠️ Como Funciona
+🔹 Upload de PDFs
 
-### 🔹 Upload de PDFs
+O utilizador envia um arquivo PDF via Streamlit.
 
-1. O utilizador envia um arquivo PDF via **Streamlit**.
-2. O **backend (FastAPI)** processa e extrai o texto do PDF.
-3. O texto é convertido em embeddings e armazenado no **ChromaDB**.
+O backend (FastAPI) processa e extrai o texto do PDF.
 
-### 🔹 Consulta ao Chatbot
+O texto é convertido em embeddings e armazenado no ChromaDB.
 
-1. O utilizador faz uma pergunta no **Streamlit**.
-2. O **backend** procura no **ChromaDB** partes relevantes dos PDFs.
-3. Os elementos são enviados para o **Ollama**, que gera uma resposta.
-4. A resposta é enviada ao utilizador via **Streamlit**.
+🔹 Consulta ao Chatbot
 
----
+O utilizador faz uma pergunta no Streamlit.
 
-## 📡 Comunicação entre Serviços
+O backend procura no ChromaDB partes relevantes dos PDFs.
 
-1. **FastAPI** comunica com:
+Os elementos são enviados para o Ollama, que gera uma resposta.
 
-   - **ChromaDB** (`http://chromadb:8000`) para pesquisas de contexto.
-   - **Ollama** (`http://ollama:11434`) para gerar respostas.
+A resposta é enviada ao utilizador via Streamlit.
 
-2. **Streamlit** interage com o **FastAPI** para enviar perguntas e receber respostas.
+📡 Comunicação entre Serviços
 
----
+FastAPI comunica com:
 
-## 🛑 Parar os Containers
+ChromaDB (http://chromadb:8000) para pesquisas de contexto.
 
-```bash
-docker compose down
-```
+Ollama (http://ollama:11434) para gerar respostas.
+
+Streamlit interage com o FastAPI para enviar perguntas e receber respostas.
+
+🛑 Parar os Containers
+
+<pre>
+<code id="code3">docker compose down</code>
+<button onclick="copyToClipboard('code3')">📋 Copiar Código</button>
+</pre>
 
 Para monitorizar logs em tempo real:
 
-```bash
-docker compose logs -f
-```
+<pre>
+<code id="code4">docker compose logs -f</code>
+<button onclick="copyToClipboard('code4')">📋 Copiar Código</button>
+</pre>
 
----
+📝 Funcionalidades a implementar brevemente
 
-## 📝 Funcionalidades a implementar brevemente
+🔐 Autenticação de Utilizadores
 
-- 🔐 **Autenticação de Utilizadores**
-- 🔍 **Melhorias na Busca Semântica**
-- 💾 **Persistência e Histórico de Conversas**
+🔍 Melhorias na Busca Semântica
 
-Se tiver dúvidas ou sugestões, sinta-se à vontade para contribuir! 🚀 Se não puder ajudar, atrapalhe, o importante é participar! 😜
+💾 Persistência e Histórico de Conversas
+
+Se tiver dúvidas ou sugestões, sinta-se à vontade para contribuir! 🚀
+
+📜 Código JavaScript para Copiar Código
+
+Adiciona este script ao fim do README para ativar o botão de cópia no GitHub Pages ou outras plataformas Markdown que suportam HTML + JS:
+
+<script>
+  function copyToClipboard(id) {
+    var copyText = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(copyText);
+    alert("Código copiado!");
+  }
+</script>
