@@ -1,3 +1,108 @@
+Chatbot Advisor - WebApp with Docker, FastAPI, and Streamlit
+
+This project implements an advisor chatbot that allows users to upload PDFs containing laws and regulations. The chatbot responds to user questions using a language model (LLM) based on Ollama and stores information in ChromaDB for semantic searches.
+
+📌 Technologies Used
+
+Python 3.11
+
+FastAPI (Backend)
+
+Streamlit (Web Interface)
+
+ChromaDB (Vector Database)
+
+Ollama (Language Model)
+
+Docker & Docker Compose
+
+🚀 How to Use the Project
+
+1️⃣ Install Docker and Docker Compose
+
+🔗 Docker Installation Guide
+
+2️⃣ Clone the Repository
+
+git clone https://github.com/your-repository/chatbot-legalista.git
+cd chatbot-legalista
+
+3️⃣ Build and Start the Containers
+
+docker compose up --build
+
+The application will be available at:
+
+Web Interface (Streamlit): http://localhost:8501
+
+API Backend (FastAPI): http://localhost:8000
+
+📂 Project Structure
+
+chatbot-app/
+│── backend/
+│ │── main.py # FastAPI API
+│ │── process.py # PDF Processing
+│ │── vector_store.py # Semantic Storage (ChromaDB)
+│ │── chat.py # Communication with Ollama
+│── app.py # Streamlit Interface
+│── Dockerfile.backend # Backend Configuration
+|── Dockerfile.streamlit # Frontend Configuration
+│── docker-compose.yml # Container Orchestration
+│── requirements.txt # Project Dependencies
+|── entrypoint.sh # Script for running Ollama
+|── readme.md
+
+🛠️ How It Works
+
+🔹 PDF Upload
+
+The user uploads a PDF file via Streamlit.
+
+The backend (FastAPI) processes and extracts text from the PDF.
+
+The text is converted into embeddings and stored in ChromaDB.
+
+🔹 Chatbot Query
+
+The user asks a question in Streamlit.
+
+The backend searches ChromaDB for relevant parts of the PDFs.
+
+The retrieved elements are sent to Ollama, which generates a response.
+
+The response is sent to the user via Streamlit.
+
+📡 Communication Between Services
+
+FastAPI communicates with:
+
+ChromaDB (http://chromadb:8000) for context searches.
+
+Ollama (http://ollama:11434) to generate responses.
+
+Streamlit interacts with FastAPI to send questions and receive responses.
+
+🛑 Stopping the Containers
+
+docker compose down
+
+To monitor logs in real time:
+
+docker compose logs -f
+
+📝 Upcoming Features
+
+🔐 User Authentication
+
+🔍 Improved Semantic Search
+
+💾 Persistence and Conversation History
+
+If you have any questions or suggestions, feel free to contribute! 🚀 If you can't help, just make some noise, the important thing is to participate! 😜
+
+📖 Versão em Português
+
 Chatbot Conselheiro - WebApp com Docker, FastAPI e Streamlit
 
 Este projeto implementa um chatbot conselheiro que permite o upload de PDFs com leis e regulamentos. O chatbot responde a perguntas do utilizador através de um modelo de linguagem (LLM) baseado no Ollama e guarda informações em ChromaDB para buscas semânticas.
@@ -24,18 +129,12 @@ Docker & Docker Compose
 
 2️⃣ Clonar o Repositório
 
-<pre>
-<code id="code1">git clone https://github.com/seu-repositorio/chatbot-legalista.git
-cd chatbot-legalista</code>
-<button onclick="copyToClipboard('code1')">📋 Copiar Código</button>
-</pre>
+git clone https://github.com/seu-repositorio/chatbot-legalista.git
+cd chatbot-legalista
 
 3️⃣ Construir e Iniciar os Containers
 
-<pre>
-<code id="code2">docker compose up --build</code>
-<button onclick="copyToClipboard('code2')">📋 Copiar Código</button>
-</pre>
+docker compose up --build
 
 A aplicação estará disponível em:
 
@@ -56,7 +155,7 @@ chatbot-app/
 |── Dockerfile.streamlit # Configuração do frontend
 │── docker-compose.yml # Orquestração dos containers
 │── requirements.txt # Dependências do projeto
-|── entrypoint.sh # script para correr no ollama
+|── entrypoint.sh # Script para correr no Ollama
 |── readme.md
 
 🛠️ Como Funciona
@@ -91,17 +190,11 @@ Streamlit interage com o FastAPI para enviar perguntas e receber respostas.
 
 🛑 Parar os Containers
 
-<pre>
-<code id="code3">docker compose down</code>
-<button onclick="copyToClipboard('code3')">📋 Copiar Código</button>
-</pre>
+docker compose down
 
 Para monitorizar logs em tempo real:
 
-<pre>
-<code id="code4">docker compose logs -f</code>
-<button onclick="copyToClipboard('code4')">📋 Copiar Código</button>
-</pre>
+docker compose logs -f
 
 📝 Funcionalidades a implementar brevemente
 
@@ -111,16 +204,4 @@ Para monitorizar logs em tempo real:
 
 💾 Persistência e Histórico de Conversas
 
-Se tiver dúvidas ou sugestões, sinta-se à vontade para contribuir! 🚀
-
-📜 Código JavaScript para Copiar Código
-
-Adiciona este script ao fim do README para ativar o botão de cópia no GitHub Pages ou outras plataformas Markdown que suportam HTML + JS:
-
-<script>
-  function copyToClipboard(id) {
-    var copyText = document.getElementById(id).innerText;
-    navigator.clipboard.writeText(copyText);
-    alert("Código copiado!");
-  }
-</script>
+Se tiver dúvidas ou sugestões, sinta-se à vontade para contribuir! 🚀 Se não puder ajudar, atrapalhe, o importante é participar! 😜
