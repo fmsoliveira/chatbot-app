@@ -1,0 +1,45 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - chromadb
+      - ollama
+    volumes:
+      - uploads_data:/app/uploads  # Usa um volume nomeado
+
+  streamlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+
+  chromadb:
+    image: ghcr.io/chroma-core/chroma
+    expose:
+      - "8000"
+
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    entrypoint: ["/bin/sh", "/app/entrypoint.sh"]
+    working_dir: /app
+    volumes:
+      - ./entrypoint.sh:/app/entrypoint.sh
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+volumes:
+  ollama_data:
+  uploads_data:

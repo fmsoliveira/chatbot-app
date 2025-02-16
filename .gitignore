@@ -1,0 +1,38 @@
+# 🏗️ Diretórios gerados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# 📦 Dependências do Python
+env/
+venv/
+*.egg-info/
+Pipfile
+Pipfile.lock
+poetry.lock
+
+# 🔧 Configurações do Docker
+*.env
+docker-compose.override.yml
+
+# ⚙️ IDEs e Ferramentas Locais
+.vscode/
+.idea/
+*.swp
+
+# 📂 Dados e Uploads
+uploads/
+data/
+*.sqlite3
+
+# 🛠️ Modelos e Cache
+*.h5
+*.pt
+*.onnx
+*.pkl
+
+# 🔑 Chaves e Credenciais (nunca commits!)
+.env
+config/secrets.json

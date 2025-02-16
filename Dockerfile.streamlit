@@ -1,0 +1,18 @@
+# Usa uma imagem oficial do Python 3.11
+FROM python:3.11
+
+# Define o diretório de trabalho dentro do container
+WORKDIR /app
+
+# Copia os arquivos do frontend para dentro do container
+COPY app.py .
+COPY requirements.txt .
+
+# Instala as dependências necessárias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expõe a porta usada pelo Streamlit
+EXPOSE 8501
+
+# Comando para rodar o Streamlit
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
